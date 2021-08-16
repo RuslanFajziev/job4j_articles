@@ -16,8 +16,6 @@ public class SimpleArticleService implements ArticleService {
 
     private final ArticleGenerator articleGenerator;
 
-    private final Article article = new Article();
-
     public SimpleArticleService(ArticleGenerator articleGenerator) {
         this.articleGenerator = articleGenerator;
     }
@@ -28,7 +26,7 @@ public class SimpleArticleService implements ArticleService {
         var words = wordStore.findAll();
         var articles = IntStream.iterate(0, i -> i < count, i -> i + 1)
                 .peek(i -> LOGGER.info("Сгенерирована статья Вася № {}", i))
-                .mapToObj((x) -> articleGenerator.generate(words, article))
+                .mapToObj((x) -> articleGenerator.generate(words))
                 .collect(Collectors.toList());
         articles.forEach(articleStore::save);
     }

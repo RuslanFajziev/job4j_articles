@@ -11,8 +11,7 @@ public class Article {
         this.text = text;
     }
 
-    public Article() {
-    }
+    public Article() {}
 
     public Article(String text) {
         this.text = text;
