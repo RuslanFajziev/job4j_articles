@@ -9,8 +9,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class RandomArticleGenerator implements ArticleGenerator {
-    private final Article article = new Article();
-
     @Override
     public Article generate(List<Word> words) {
         var wordsCopy = new ArrayList<>(words);
@@ -18,7 +16,6 @@ public class RandomArticleGenerator implements ArticleGenerator {
         var content = wordsCopy.stream()
                 .map(Word::getValue)
                 .collect(Collectors.joining(" "));
-        article.setText(content);
-        return article;
+        return new Article(content);
     }
 }
